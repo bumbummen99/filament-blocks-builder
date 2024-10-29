@@ -16,5 +16,12 @@
         "php": "^8.3",
         "illuminate/support": "^11",
         "filament/forms": "^3.2.120"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SkyRaptor\\FilamentBlocksBuilder\\FilamentBlocksBuilderServiceProvider"
+            ]
+        }
     }
 }
