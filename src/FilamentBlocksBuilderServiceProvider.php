@@ -2,7 +2,9 @@
 
 namespace SkyRaptor\FilamentBlocksBuilder;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class FilamentBlocksBuilderServiceProvider extends ServiceProvider
 {
@@ -21,5 +23,13 @@ class FilamentBlocksBuilderServiceProvider extends ServiceProvider
     {
         /* Load the views provided by this package */
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'filament-blocks-builder');
+
+        /* Register a Blade Directive to render Blocks. */
+        Blade::directive('blocks', function (string $expression) {
+            return Str::replaceArray('?', [
+                BlocksRenderer::class,
+                $expression
+            ], '<?php echo ?:render(?); ?>');
+        });
     }
 }
