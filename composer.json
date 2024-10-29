@@ -14,14 +14,6 @@
     ],
     "require": {
         "php": "^8.3",
-        "cweagans/composer-patches": "^1.7.0",
-        "filament/forms": "^3.2"
-    },
-    "extra": {
-        "patches": {
-            "filament/forms": {
-                "Fix oldFormState containing new values.": "https://patch-diff.githubusercontent.com/raw/filamentphp/filament/pull/13973.diff"
-            }
-        }
+        "filament/forms": "^3.2.120"
     }
 }
