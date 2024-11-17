@@ -1,0 +1,38 @@
+providers:
+  # - Workbench\App\Providers\WorkbenchServiceProvider
+  - Livewire\LivewireServiceProvider
+  - Filament\FilamentServiceProvider
+  - Filament\Forms\FormsServiceProvider
+  - Filament\Widgets\WidgetsServiceProvider
+  - Filament\Support\SupportServiceProvider
+  - Filament\Notifications\NotificationsServiceProvider
+  - Filament\Infolists\InfolistsServiceProvider
+  - Filament\Actions\ActionsServiceProvider
+  - BladeUI\Icons\BladeIconsServiceProvider
+  - BladeUI\Heroicons\BladeHeroiconsServiceProvider
+  - SkyRaptor\FilamentBlocksBuilder\FilamentBlocksBuilderServiceProvider
+  - Workbench\App\Providers\Filament\AdminPanelProvider
+
+migrations:
+  - workbench/database/migrations
+
+workbench:
+  start: '/'
+  install: true
+  health: false
+  discovers:
+    web: true
+    api: false
+    commands: false
+    components: false
+    views: false
+  build:
+    - asset-publish
+    - create-sqlite-db
+    - db-wipe
+    - migrate-fresh:
+        --seed: true
+        --seeder: Workbench\Database\Seeders\DatabaseSeeder
+  assets:
+    - laravel-assets
+  sync: []

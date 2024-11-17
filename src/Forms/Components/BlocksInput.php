@@ -37,14 +37,25 @@ final class BlocksInput extends Builder
      */
     public function inheritBlocks()
     {
-        /* Iterate this BlockInput's parents */
-        while ($parent = $this->getContainer()->getParentComponent()) {
-            /* Determine if the parent is a BlocksInput */
-            if ($parent instanceof static) {
-                /* Inherit the blocks */
-                $this->blocks($parent->getCildComponents());
+        /* Use a Closure to inherit blocks lazy */
+        $this->childComponents(function () {
+            $current = $this;
+
+            /* Iterate this BlockInput's parents */
+            while ($parent = $current->getContainer()->getParentComponent()) {
+                /* Determine if the parent is a BlocksInput */
+                if ($parent instanceof static) {
+                    /* Inherit the blocks */
+                    $this->blocks($parent->getCildComponents());
+
+                    /* Stop the loop */
+                    break;
+                } else {
+                    /* Continue using the parent */
+                    $current = $parent;
+                }
             }
-        }
+        });
     }
 
     /**
