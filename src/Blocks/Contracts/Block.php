@@ -2,27 +2,22 @@
 
 namespace SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts;
 
-use Closure;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 abstract class Block
 {
     /**
-     * Create a new instance of this Block.
+     * Creates the Filament PHP Forms Component for this Block.
      */
-    public static function make(): static
+    public static function block(Form $form): Builder\Block
     {
-        return new static;
+        return Builder\Block::make(static::class)
+            /* Derive a basic label from the class name */
+            ->label(Str::of(static::class)->classBasename()->toString());
     }
-
-    /**
-     * Defines the Form to edit this Block.
-     * 
-     * @return Closure(Form): Builder\Block
-     */
-    public abstract static function block(): Closure;
 
     /**
      * Provides the View to be used to render this Block.

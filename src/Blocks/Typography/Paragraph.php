@@ -2,7 +2,6 @@
 
 namespace SkyRaptor\FilamentBlocksBuilder\Blocks\Typography;
 
-use Closure;
 use Filament\Forms\Components;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
@@ -16,14 +15,12 @@ class Paragraph extends Block
     /**
      * @inheritDoc
      */
-    public static function block(): Closure
+    public static function block(Form $form): Builder\Block
     {
-        return fn (Form $form) => Builder\Block::make(static::class)
-            ->label('Paragraph')
-            ->schema([
-                Components\Textarea::make('content')
-                    ->required(),
-            ]);
+        return parent::block($form)->schema([
+            Components\Textarea::make('content')
+                ->required(),
+        ]);
     }
 
     public static function view(): string

@@ -2,7 +2,6 @@
 
 namespace SkyRaptor\FilamentBlocksBuilder\Blocks\Layout;
 
-use Closure;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
 use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\Block;
@@ -16,14 +15,12 @@ class Card extends Block
     /**
      * @inheritDoc
      */
-    public static function block(): Closure
+    public static function block(Form $form): Builder\Block
     {
-        return fn (Form $form) => Builder\Block::make(static::class)
-            ->label('Card')
-            ->schema([
-                Forms\Components\BlocksInput::make('content')
-                    ->blocks([]) // TODO
-            ]);
+        return parent::block($form)->schema([
+            Forms\Components\BlocksInput::make('content')
+                ->blocks([]) // TODO
+        ]);
     }
 
     public static function view(): string
