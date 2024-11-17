@@ -19,7 +19,6 @@ class Card extends Block
     {
         return parent::block($form)->schema([
             Forms\Components\BlocksInput::make('content')
-                ->blocks([]) // TODO
         ]);
     }
 
