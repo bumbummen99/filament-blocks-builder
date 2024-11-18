@@ -80,3 +80,37 @@ Now you can add the custom Block to your BlocksInput of choice!
     App\Filament\Blocks\Example::block($form)
 ])
 ```
+
+## Contributing
+This project is open for contributions throught pull requests on GitHub. Please make sure that the tests do succeed when contributing to the project.
+Below you will find helpful information about the project for contributors.
+
+### DevContainer
+This project includes a DevContainer configuration to quickly setup a environment with all required dependencies to start working right away. 
+To do so simply open the project's `.code-workspace`, then use the remote development menu in the lower left to *Reopen in Container*.
+
+### Debugging
+#### PHPUnit
+Sometimes it can be very useful to debug the test cases themself. This project provides the `Debug Tests` launch configuration in Visual Studio code 
+as a convenient way to run PHPUnit as well as to setup xDebug.
+
+#### Workbench
+The Orchestral Workbench used for functional and browser based tests can also be previewed as well as debugged.
+
+Use the following Orchestral Workbench command to generate an empty, persistent SQlite database in the Laravel skeleton.
+```bash
+vendor/bin/testbench package:create-sqlite-db
+```
+
+Next you will have to run the Migrations defined in the Workbench using the command below.
+```bash
+vendor/bin/testbench migrate
+```
+
+Now that the Orchestral Workbench environment has a functional database, you will have to create a user using the following command.
+```bash
+vendor/bin/testbench make:filament-user
+```
+
+Now that the Orchestral Workbench environment is completely setup, you can use the `Debug Workbench` launch configuration in Visual Studio Code. 
+This will start the builtin webserver using Laravel's `serve` command as well as to setup xDebug.
