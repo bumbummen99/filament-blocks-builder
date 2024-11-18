@@ -1,7 +1,7 @@
 # Filament PHP Blocks Builder
 
-[![Test Status](https://img.shields.io/packagist/dependency-v/skyraptor/filament-blocks-builder/filament%2Ffilament?label=filament)](https://github.com/bumbummen99/filament-blocks-builder)
-[![Test Coverage](https://img.shields.io/packagist/dependency-v/skyraptor/filament-blocks-builder/filament%2Ffilament?label=filament)](https://github.com/bumbummen99/filament-blocks-builder)
+[![Tests](https://github.com/bumbummen99/filament-blocks-builder/actions/workflows/tests.yml/badge.svg)](https://github.com/bumbummen99/filament-blocks-builder/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/github/bumbummen99/filament-blocks-builder/graph/badge.svg?token=CQUDGFF150)](https://codecov.io/github/bumbummen99/filament-blocks-builder)
 [![Filament Version](https://img.shields.io/packagist/dependency-v/skyraptor/filament-blocks-builder/filament%2Ffilament?label=filament)](https://github.com/filamentphp/filament/)
 [![Stable Version](https://img.shields.io/packagist/v/skyraptor/filament-blocks-builder?label=stable)](https://packagist.org/packages/skyraptor/filament-blocks-builder)
 [![Total Downloads](https://img.shields.io/packagist/dt/skyraptor/filament-blocks-builder)](https://packagist.org/packages/skyraptor/filament-blocks-builder)
