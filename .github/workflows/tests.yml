@@ -13,7 +13,10 @@ jobs:
         laravel: [11.*]
         stability: [prefer-lowest, prefer-stable]
     env:
+      OS: ${{ matrix.os }}
       PHP_VERSION: ${{ matrix.php }}
+      LARAVEL: ${{ matrix.laravel }}
+      STABILITY: ${{ matrix.stability }}
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -45,5 +48,7 @@ jobs:
         with:
           file: ./coverage.xml
           flags: unittests
-          env_vars: PHP_VERSION
+          env_vars: OS,PHP_VERSION,LARAVEL,STABILITY
           fail_ci_if_error: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
