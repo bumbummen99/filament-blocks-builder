@@ -26,17 +26,17 @@ class PageResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Forms\Components\TextInput::make('title')
-                ->required()
-                ->maxLength(255),
-            BlocksInput::make('content')
-                ->blocks([
-                    Blocks\Layout\Card::block($form),
-                    Blocks\Typography\Heading::block($form),
-                    Blocks\Typography\Paragraph::block($form)
-                ])
-        ]);
+            ->schema([
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                BlocksInput::make('content')
+                    ->blocks(fn () => [
+                        Blocks\Layout\Card::block($form),
+                        Blocks\Typography\Heading::block($form),
+                        Blocks\Typography\Paragraph::block($form)
+                    ])
+            ]);
     }
 
     public static function table(Table $table): Table

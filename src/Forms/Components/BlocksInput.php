@@ -22,6 +22,19 @@ final class BlocksInput extends Builder
     }
 
     /**
+     * This method does find the first "parent" 
+     * BlocksInput and inherit it's blocks 
+     */
+    protected function inheritBlocks()
+    {
+        /* Inherit possible parent Blocks */
+        $this->childComponents(
+            /* Use a Closure to prevent accessing the Component's Container before initialization */
+            fn () => $this->getParentBlocksInput()?->getChildComponents()
+        );
+    }
+
+    /**
      * This fluent method can be used to toggle blocks inheritance.
      */
     public function inherit(bool $state = true): static
@@ -32,38 +45,24 @@ final class BlocksInput extends Builder
     }
 
     /**
-     * This method does find the first "parent" 
-     * BlocksInput and inherit it's blocks 
+     * This helper method finds the closest parent 
+     * BlocksInput component and returns it.
      */
-    public function inheritBlocks()
+    protected function getParentBlocksInput(): ?static
     {
-        /* Use a Closure to inherit blocks lazy */
-        $this->childComponents(function () {
-            $current = $this;
+        $current = $this;
 
-            /* Iterate this BlockInput's parents */
-            while ($parent = $current->getContainer()->getParentComponent()) {
-                /* Determine if the parent is a BlocksInput */
-                if ($parent instanceof static) {
-                    /* Inherit the blocks */
-                    $this->blocks($parent->getCildComponents());
-
-                    /* Stop the loop */
-                    break;
-                } else {
-                    /* Continue using the parent */
-                    $current = $parent;
-                }
+        /* Iterate this BlockInput's parents */
+        while ($parent = $current->getContainer()->getParentComponent()) {
+            /* Determine if the parent is a BlocksInput */
+            if ($parent instanceof static) {
+                return $parent;
+            } else {
+                /* Continue search with the parent */
+                $current = $parent;
             }
-        });
-    }
+        }
 
-    /**
-     * This method allows public access to the childComponents 
-     * member without evaluating it's value beforehand.
-     */
-    public function getCildComponents(): array | Closure
-    {
-        return $this->childComponents;
+        return null;
     }
 }
