@@ -8,4 +8,67 @@ composer require skyraptor/filament-blocks-builder
 ```
 
 ## Useage
-TODO
+### Add Blocks Builder to a Resource
+Since the Blocks Builder is essentially only an Form Component, you can use it on any Resource or Form however you like!
+In order to do so just add below code snippet to your form:
+```php
+use SkyRaptor\FilamentBlocksBuilder\Blocks;
+use SkyRaptor\FilamentBlocksBuilder\Forms\Components\BlocksInput;
+
+BlocksInput::make('content')
+    ->blocks(fn () => [
+        Blocks\Layout\Card::block($form),
+        Blocks\Typography\Heading::block($form),
+        Blocks\Typography\Paragraph::block($form)
+    ])
+```
+
+### Creating custom Blocks
+A Block itself is a combination of a Filament PHP Form definition as well as the view required to render the Block on the frontend.
+
+The package does include basic example Blocks, however it is **recommended** that you do create and maintain 
+your own library of Blocks - this can be done in your project as well as in a package.
+
+In order to create your custom Block you will have to extend the `Block` Contract provided by this package as shown 
+in the example below. The implementation must define and configure the Block's Filament PHP Form schema as well 
+as the view to be used.
+```php
+<?php
+
+namespace App\Filament\Blocks;
+
+use Filament\Forms\Components;
+use Filament\Forms\Form;
+
+class Example extends \SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\Block
+{
+    public static function block(Form $form): Components\Builder\Block
+    {
+        return parent::block($form)->schema([
+            Components\Textarea::make('content')
+                ->required(),
+        ]);
+    }
+
+    public static function view(): string
+    {
+        return 'example';
+    }
+}
+```
+
+Next the Block's view has to be created. In our example, this is just a Laravel Blade view called `example.blade.php`. **The view itself has access to the data defined by the Block's schema**.
+```php
+<p>{{ $content }}</p>
+```
+
+Now you can add the custom Block to your BlocksInput of choice!
+```php
+->blocks(fn () => [
+    Blocks\Layout\Card::block($form),
+    Blocks\Typography\Heading::block($form),
+    Blocks\Typography\Paragraph::block($form),
+    // ...
+    App\Filament\Blocks\Example::block($form)
+])
+```
