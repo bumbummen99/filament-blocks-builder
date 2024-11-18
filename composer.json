@@ -2,6 +2,7 @@
     "name": "skyraptor/filament-blocks-builder",
     "type": "library",
     "description": "This Filament PHP plugin adds a BlockBuilder form component, that allows you to create layouts using Blocks. This can be used as a builder for anything: layout, content, data and more.",
+    "license": "GPL-3.0-only",
     "keywords": [
         "laravel",
         "filament",
