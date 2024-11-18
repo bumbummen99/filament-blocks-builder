@@ -1,5 +1,5 @@
 providers:
-  # - Workbench\App\Providers\WorkbenchServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
   - Livewire\LivewireServiceProvider
   - Filament\FilamentServiceProvider
   - Filament\Forms\FormsServiceProvider

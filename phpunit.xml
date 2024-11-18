@@ -14,9 +14,13 @@
          failOnWarning="true">
     <php>
         <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
-        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DB_CONNECTION" value="testing"/>
     </php>
     <testsuites>
+        <testsuite name="Browser">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>

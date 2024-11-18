@@ -2,7 +2,9 @@
 
 namespace Workbench\App\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Workbench\App\Models\User;
 
 class WorkbenchServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,8 @@ class WorkbenchServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        /* Correct the User Model configuration for Orchestral Testbench */
+        Config::set('auth.providers.users.model', User::class);
     }
 
     /**
