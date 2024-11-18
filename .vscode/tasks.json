@@ -11,6 +11,53 @@
                 "-f",
                 "vendor/orchestra/testbench-core/laravel/server.php"
             ]
+        },
+        {
+            "label": "CreateUser",
+            "type": "shell",
+            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "args": [
+                "make:filament-user",
+                "--name=${input:devUserName}",
+                "--email=${input:devUserEmail}",
+                "--password=${input:devUserPassword}"
+            ]
+        },
+        {
+            "label": "Create SQLite Database",
+            "type": "shell",
+            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "args": [
+                "package:create-sqlite-db"
+            ]
+        },
+        {
+            "label": "Drop SQLite Database",
+            "type": "shell",
+            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "args": [
+                "package:drop-sqlite-db"
+            ]
         }
+    ],
+    "inputs": [
+        {
+            "id": "devUserName",
+            "description": "Username:",
+            "default": "Max Mustermann",
+            "type": "promptString"
+        },
+        {
+            "id": "devUserEmail",
+            "description": "Email:",
+            "default": "example@example.com",
+            "type": "promptString"
+        },
+        {
+            "id": "devUserPassword",
+            "description": "Password:",
+            "default": "test",
+            "type": "promptString"
+        },
     ]
 }
