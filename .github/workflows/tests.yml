@@ -30,6 +30,9 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ctype, curl, dom, fileinfo, filter, hash, intl, json, libxml, mbstring, openssl, pcre, phar, session, sqlite, tokenizer, xml, xmlreader, xmlwriter, zip, xdebug
           coverage: xdebug
+
+      - name: Check Sqlite is loaded
+        run: php -m | grep sqlite
           
       - name: Setup problem matchers
         run: |
