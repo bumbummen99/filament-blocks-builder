@@ -1,11 +1,11 @@
 # Filament PHP Blocks Builder
 
 [![Tests](https://github.com/bumbummen99/filament-blocks-builder/actions/workflows/tests.yml/badge.svg)](https://github.com/bumbummen99/filament-blocks-builder/actions/workflows/tests.yml)
-[![codecov](https://codecov.io/github/bumbummen99/filament-blocks-builder/graph/badge.svg?token=CQUDGFF150)](https://codecov.io/github/bumbummen99/filament-blocks-builder)
+[![Codecov](https://codecov.io/github/bumbummen99/filament-blocks-builder/graph/badge.svg?token=CQUDGFF150)](https://codecov.io/github/bumbummen99/filament-blocks-builder)
 [![Filament Version](https://img.shields.io/packagist/dependency-v/skyraptor/filament-blocks-builder/filament%2Fforms?label=filament)](https://github.com/filamentphp/filament/)
 [![Stable Version](https://img.shields.io/packagist/v/skyraptor/filament-blocks-builder?label=stable)](https://packagist.org/packages/skyraptor/filament-blocks-builder)
 [![Total Downloads](https://img.shields.io/packagist/dt/skyraptor/filament-blocks-builder)](https://packagist.org/packages/skyraptor/filament-blocks-builder)
-[![License](https://img.shields.io/packagist/1/skyraptor/filament-blocks-builder)](https://github.com/bumbummen99/filament-blocks-builder/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/bumbummen99/filament-blocks-builder)](https://github.com/bumbummen99/filament-blocks-builder/blob/master/LICENSE)
 
 This Filament PHP plugin adds a `BlockBuilder` form component, that allows you to create layouts using Blocks. This can be used as a builder for anything: layout, content, data and more.
 
