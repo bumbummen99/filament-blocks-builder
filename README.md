@@ -10,7 +10,7 @@
 **Filament PHP Blocks Builder** is a plugin that adds a `BlockBuilder` form component, enabling you to design layouts using blocks on any resource you like. This flexible tool is suitable for building layouts, managing content, structuring data, and more.
 
 ## 📸Screenshots
-Check out screenshots of the form components offerend by this package in [the screenshots directory](https://github.com/bumbummen99/filament-blocks-builder/tree/master/docs/screenshots).
+Check out screenshots of the form components offerend by this package in [the screenshots directory](https://github.com/bumbummen99/filament-blocks-builder/blob/master/docs/SCREENSHOTS.md).
 
 ---
 
