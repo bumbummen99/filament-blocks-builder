@@ -10,7 +10,7 @@
 This Filament PHP plugin adds a `BlockBuilder` form component, that allows you to create layouts using Blocks. This can be used as a builder for anything: layout, content, data and more.
 
 ## Screenshots
-
+You can find screenshots of the form components offerend by this package in [the screenshots directory of the repository](https://github.com/bumbummen99/filament-blocks-builder/tree/master/doc/screenshots).
 
 ## Installation
 The package can be installed throught Composer by using the following command:
