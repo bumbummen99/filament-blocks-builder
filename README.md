@@ -1,4 +1,4 @@
-![Filament Blocks Builder Thumbnail](./doc/thumbnail.jpg)
+![Filament Blocks Builder Thumbnail](./docs/assets/thumbnail.jpg)
 # Filament PHP Blocks Builder
 [![Tests](https://github.com/bumbummen99/filament-blocks-builder/actions/workflows/tests.yml/badge.svg)](https://github.com/bumbummen99/filament-blocks-builder/actions/workflows/tests.yml)
 [![Codecov](https://codecov.io/github/bumbummen99/filament-blocks-builder/graph/badge.svg?token=CQUDGFF150)](https://codecov.io/github/bumbummen99/filament-blocks-builder)
