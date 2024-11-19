@@ -1,3 +1,3 @@
 # Filament Blocks Builder Screenshots
 
-![BlocksInout dark mode](./assets/screenshots/BlocksInput.png)
+![BlocksInout dark mode](./assets/screenshots/blocks-input-dark.png)
