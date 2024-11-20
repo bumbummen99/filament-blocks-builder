@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyRaptor\FilamentBlocksBuilder\Blocks\Layout;
+namespace SkyRaptor\FilamentBlocksBuilder\Blocks;
 
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
@@ -24,6 +24,6 @@ class Card extends Block
 
     public static function view(): string
     {
-        return 'filament-blocks-builder::layout.card';
+        return 'filament-blocks-builder::card';
     }
 }

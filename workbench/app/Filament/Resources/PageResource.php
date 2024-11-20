@@ -30,13 +30,19 @@ class PageResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                BlocksInput::make('content')
-                    ->blocks(fn () => [
-                        Blocks\Layout\Card::block($form),
-                        Blocks\Typography\Heading::block($form),
-                        Blocks\Typography\Paragraph::block($form)
+                Forms\Components\Card::make()
+                    ->heading('Blocks Builder')
+                    ->schema([
+                        BlocksInput::make('content')
+                            ->label('')
+                            ->blocks(fn () => [
+                                Blocks\Card::block($form),
+                                Blocks\Typography\Heading::block($form),
+                                Blocks\Typography\Paragraph::block($form)
+                            ])
                     ])
-            ]);
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table): Table

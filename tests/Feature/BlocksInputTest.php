@@ -66,7 +66,7 @@ class BlocksInputTest extends FeatureTestCase
                             ]
                         ]
                     ],
-                    'type' => Blocks\Layout\Card::class
+                    'type' => Blocks\Card::class
                 ]
             ]
         ]);
