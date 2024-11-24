@@ -29,8 +29,6 @@ class TestCase extends \Orchestra\Testbench\Dusk\TestCase
          */
         tap($app['config'], function (Repository $config) {
             $config->set('database.default', 'sqlite');
-
-            $path = $config->get('database.connections.sqlite.database');
         });
     }
 }
