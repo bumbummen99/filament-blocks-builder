@@ -8,7 +8,7 @@ use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\Block;
 use SkyRaptor\FilamentBlocksBuilder\Forms;
 
 /**
- * This layout block defines a "card" component.
+ * This block defines a "card" component.
  */
 class Card extends Block
 {

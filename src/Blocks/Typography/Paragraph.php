@@ -18,7 +18,7 @@ class Paragraph extends Block
     public static function block(Form $form): Builder\Block
     {
         return parent::block($form)->schema([
-            Components\Textarea::make('content')
+            Components\MarkdownEditor::make('content')
                 ->required(),
         ]);
     }
