@@ -16,6 +16,7 @@
                 "-dxdebug.start_with_request=yes"
             ],
             "program": "${workspaceFolder}/vendor/bin/phpunit",
+            "preLaunchTask": "Create Dusk Database",
         },
         {
             "name": "Debug Workbench",
@@ -41,7 +42,8 @@
             "args": [
                 "serve"
             ],
-            "postDebugTask": "KillLaravelServer",
+            "preLaunchTask": "Prepare Workbench",
+            "postDebugTask": "Kill Laravel Server",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]

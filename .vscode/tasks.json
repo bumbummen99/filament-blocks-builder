@@ -4,16 +4,39 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "KillLaravelServer",
-            "type": "shell",
-            "command": "pkill",
-            "args": [
-                "-f",
-                "vendor/orchestra/testbench-core/laravel/server.php"
+            "label": "Prepare Workbench",
+            "dependsOn": [
+                "Create Database",
+                "Migrate Database",
+                "Create User"
             ]
         },
         {
-            "label": "CreateUser",
+            "label": "Create Database",
+            "type": "shell",
+            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "args": [
+                "package:create-sqlite-db"
+            ]
+        },
+        {
+            "label": "Drop Database",
+            "type": "shell",
+            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "args": [
+                "package:drop-sqlite-db"
+            ]
+        },
+        {
+            "label": "Migrate Database",
+            "type": "shell",
+            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "args": [
+                "migrate"
+            ]
+        },
+        {
+            "label": "Create User",
             "type": "shell",
             "command": "${workspaceFolder}/vendor/bin/testbench",
             "args": [
@@ -24,17 +47,26 @@
             ]
         },
         {
-            "label": "Create SQLite Database",
+            "label": "Kill Laravel Server",
             "type": "shell",
-            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "command": "pkill",
+            "args": [
+                "-f",
+                "vendor/orchestra/testbench-core/laravel/server.php"
+            ]
+        },
+        {
+            "label": "Create Dusk Database",
+            "type": "shell",
+            "command": "${workspaceFolder}/vendor/bin/testbench-dusk",
             "args": [
                 "package:create-sqlite-db"
             ]
         },
         {
-            "label": "Drop SQLite Database",
+            "label": "Drop Dusk Database",
             "type": "shell",
-            "command": "${workspaceFolder}/vendor/bin/testbench",
+            "command": "${workspaceFolder}/vendor/bin/testbench-dusk",
             "args": [
                 "package:drop-sqlite-db"
             ]

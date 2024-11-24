@@ -1,16 +1,18 @@
 providers:
-  - Workbench\App\Providers\WorkbenchServiceProvider
-  - Livewire\LivewireServiceProvider
-  - Filament\FilamentServiceProvider
-  - Filament\Forms\FormsServiceProvider
-  - Filament\Widgets\WidgetsServiceProvider
-  - Filament\Support\SupportServiceProvider
-  - Filament\Notifications\NotificationsServiceProvider
-  - Filament\Infolists\InfolistsServiceProvider
-  - Filament\Actions\ActionsServiceProvider
-  - BladeUI\Icons\BladeIconsServiceProvider
   - BladeUI\Heroicons\BladeHeroiconsServiceProvider
+  - BladeUI\Icons\BladeIconsServiceProvider
+  - Livewire\LivewireServiceProvider
+  - RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider
+  - Filament\FilamentServiceProvider
+  - Filament\Support\SupportServiceProvider
+  - Filament\Widgets\WidgetsServiceProvider
+  - Filament\Tables\TablesServiceProvider
+  - Filament\Actions\ActionsServiceProvider
+  - Filament\Forms\FormsServiceProvider
+  - Filament\Infolists\InfolistsServiceProvider
+  - Filament\Notifications\NotificationsServiceProvider
   - SkyRaptor\FilamentBlocksBuilder\FilamentBlocksBuilderServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
   - Workbench\App\Providers\Filament\AdminPanelProvider
 
 migrations:
