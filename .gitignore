@@ -4,3 +4,8 @@ composer.lock
 
 # PHPUnit
 .phpunit.cache
+
+# Laravel Dusk
+tests/Browser/console
+tests/Browser/screenshots
+tests/Browser/source

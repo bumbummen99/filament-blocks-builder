@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests\SkyRaptor\FilamentBlocksBuilder\Feature;
+namespace Tests\SkyRaptor\FilamentBlocksBuilder\Browser;
+
+use Laravel\Dusk\Browser;
 
 class BlocksInputTest extends TestCase
 {
@@ -10,6 +12,13 @@ class BlocksInputTest extends TestCase
      */
     function test_nested_builders_interaction()
     {
-        $this->assertTrue(true);
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit('/admin/login')
+                ->type('email', $this->user->email)
+                ->type('password', 'password')
+                ->press('Login')
+                ->assertPathIs('/admin');
+        });
     }
 }
