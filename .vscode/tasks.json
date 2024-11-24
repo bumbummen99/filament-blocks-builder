@@ -5,6 +5,7 @@
     "tasks": [
         {
             "label": "Prepare Workbench",
+            "dependsOrder": "sequence",
             "dependsOn": [
                 "Create Database",
                 "Migrate Database",

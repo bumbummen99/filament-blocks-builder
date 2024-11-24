@@ -46,7 +46,10 @@
     "scripts": {
         "post-autoload-dump": [
             "@clear",
-            "@prepare"
+            "@prepare",
+            "@php vendor/bin/testbench dusk:chrome-driver --detect",
+            "@php vendor/bin/testbench filament:assets",
+            "@php vendor/bin/testbench-dusk filament:assets"
         ],
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
