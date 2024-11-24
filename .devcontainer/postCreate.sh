@@ -4,3 +4,6 @@
 if [ ! -f composer.lock ]; then
     composer install
 fi
+
+# Install ChromeDriver matching the installed Chrome version
+vendor/bin/testbench dusk:chrome-driver --detect
