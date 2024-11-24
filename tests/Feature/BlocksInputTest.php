@@ -7,10 +7,9 @@ use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
 use SkyRaptor\FilamentBlocksBuilder\Blocks;
 use SkyRaptor\FilamentBlocksBuilder\Forms\Components\BlocksInput;
-use Tests\SkyRaptor\FilamentBlocksBuilder\FeatureTestCase;
 use Workbench\App\Filament\Resources\PageResource\Pages;
 
-class BlocksInputTest extends FeatureTestCase
+class BlocksInputTest extends TestCase
 {
     /**
      * This test is intended to ensure that nested BlockBuilder instances

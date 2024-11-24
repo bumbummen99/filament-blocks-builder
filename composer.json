@@ -20,7 +20,8 @@
     },
     "require-dev": {
         "orchestra/testbench": "^9.5",
-        "filament/filament": "^3.2.120"
+        "filament/filament": "^3.2.120",
+        "orchestra/testbench-dusk": "^9.8"
     },
     "extra": {
         "laravel": {
