@@ -97,11 +97,8 @@ class BlocksInputTest extends TestCase
 
             $browser->assertSee('Card 1');
             $browser->assertSee('Heading 1');
-            $browser->assertValue('input[id$=".data.content"]', 'Das ist eine Überschrift!')->sleep(1);
-            $browser->assertSee('Paragraph 2')->sleep(1);
+            $browser->assertValue('input[id$=".data.content"]', 'Das ist eine Überschrift!');
+            $browser->assertSee('Paragraph 2');
         });
     }
 }
-
-// data.content.b6350989-e101-47ae-86c6-49c8685b3412.data.content.87fac83f-988b-48d4-825b-5416513006c6.data.content
-// data.content.b6350989-e101-47ae-86c6-49c8685b3412.data.content.24993b07-c8f8-4654-b5a7-3414ad79aa07.data.content
