@@ -11,6 +11,7 @@ providers:
   - Filament\Forms\FormsServiceProvider
   - Filament\Infolists\InfolistsServiceProvider
   - Filament\Notifications\NotificationsServiceProvider
+  - Orchestra\Testbench\Foundation\TestbenchServiceProvider
   - SkyRaptor\FilamentBlocksBuilder\FilamentBlocksBuilderServiceProvider
   - Workbench\App\Providers\WorkbenchServiceProvider
   - Workbench\App\Providers\Filament\AdminPanelProvider

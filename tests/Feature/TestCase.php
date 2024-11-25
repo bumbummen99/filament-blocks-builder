@@ -2,7 +2,10 @@
 
 namespace Tests\SkyRaptor\FilamentBlocksBuilder\Feature;
 
-use Tests\SkyRaptor\FilamentBlocksBuilder\Concerns\RequiresApplicationEnvironment;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Before;
+use Tests\SkyRaptor\FilamentBlocksBuilder\Concerns\WithWorkbenchEnvironment;
+use Tests\SkyRaptor\FilamentBlocksBuilder\Concerns\WithUser;
 
 /**
  * This class acts as the TestCase super to be extended in
@@ -10,5 +13,18 @@ use Tests\SkyRaptor\FilamentBlocksBuilder\Concerns\RequiresApplicationEnvironmen
  */
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-    use RequiresApplicationEnvironment;
+    /* Load the Orchestral Workbench environment */
+    use WithWorkbenchEnvironment;
+
+    /* Automatically run migrations and use transactions for each test */
+    use RefreshDatabase;
+
+    /* Create a default testing User for each test */
+    use WithUser;
+
+    #[Before]
+    function prepareDefaultTestingUser(): void
+    {
+        $this->afterApplicationCreated(fn () =>  $this->createDefaultTestingUser());
+    }
 }
