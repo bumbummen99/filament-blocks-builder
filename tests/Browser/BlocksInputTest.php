@@ -2,8 +2,11 @@
 
 namespace Tests\SkyRaptor\FilamentBlocksBuilder\Browser;
 
+use Filament\Panel;
+use Illuminate\Support\Facades\App;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\Options;
+use Workbench\App\Providers\Filament\AdminPanelProvider;
 
 class BlocksInputTest extends TestCase
 {
@@ -25,14 +28,22 @@ class BlocksInputTest extends TestCase
     {
         $this->browse(function (Browser $browser) {
             /* Authenticate as the default testing User */
-            $browser->loginAs($this->user);
+            $this->login(
+                $browser, 
+                (
+                    new AdminPanelProvider(App::getInstance())
+                )->panel(new Panel)
+            );
 
             /* Open the testing resource's form */
             $browser->visit('/admin/pages/create');
+            $browser->waitUntilEnabled('#data\.title');
 
             /* Add a Card to the BlocksInput */
             $browser->press('Add to');
+            $browser->waitForText('Card');
             $browser->press('Card');
+            sleep(1);
 
             /* Ensure that the card has been successfully added */
             $browser->assertSee('Card 1');
@@ -47,7 +58,12 @@ class BlocksInputTest extends TestCase
     {
         $this->browse(function (Browser $browser) {
             /* Authenticate as the default testing User */
-            $browser->loginAs($this->user);
+            $this->login(
+                $browser, 
+                (
+                    new AdminPanelProvider(App::getInstance())
+                )->panel(new Panel)
+            );
 
             /* Open the testing resource's form */
             $browser->visit('/admin/pages/create');
@@ -97,8 +113,8 @@ class BlocksInputTest extends TestCase
 
             $browser->assertSee('Card 1');
             $browser->assertSee('Heading 1');
-            $browser->assertValue('input[id$=".data.content"]', 'Das ist eine Überschrift!');
             $browser->assertSee('Paragraph 2');
+            $browser->assertValue('input[id$=".data.content"]', 'Das ist eine Überschrift!');
         });
     }
 }

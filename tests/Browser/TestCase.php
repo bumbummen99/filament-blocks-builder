@@ -2,7 +2,10 @@
 
 namespace Tests\SkyRaptor\FilamentBlocksBuilder\Browser;
 
+use Filament\Panel;
 use Illuminate\Contracts\Config\Repository;
+use Illuminate\Support\Str;
+use Laravel\Dusk\Browser;
 use PHPUnit\Framework\Attributes\Before;
 use Tests\SkyRaptor\FilamentBlocksBuilder\Concerns\WithWorkbenchEnvironment;
 use Tests\SkyRaptor\FilamentBlocksBuilder\Concerns\WithUser;
@@ -60,5 +63,37 @@ class TestCase extends \Orchestra\Testbench\Dusk\TestCase
             /* Create the default testing User */
             $this->createDefaultTestingUser();
         });
+    }
+
+    protected function login(Browser $browser, Panel $panel) {
+        // Open the provided Panel's login page
+        $loginUrl = Str::of('/') // Start with the relative base location
+            // Append the provided Panel's path
+            ->append(
+                // Remove leading / trailing seperator
+                Str::of($panel->getPath())
+                    ->chopStart('/')
+                    ->chopEnd('/')
+            )
+            // Add a path seperator
+            ->finish('/')                            
+            // Append the provided Panel's login route slug
+            ->append(
+                // Remove leading / trailing seperator
+                Str::of($panel->getLoginRouteSlug()) 
+                    ->chopStart('/')
+                    ->chopEnd('/')
+            )
+            ->toString();
+
+        $browser->visit($loginUrl);
+
+        // Enter login details
+        $browser->waitUntilEnabled('#data\.email')
+            ->type('#data\.email', $this->user->getEmailForVerification());
+        $browser->waitUntilEnabled('#data\.password')
+            ->type('#data\.password', static::$password);
+
+        $browser->press('Sign in');
     }
 }
