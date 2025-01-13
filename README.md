@@ -133,6 +133,7 @@ Use the *Debug Workbench* configuration in Visual Studio Code to preview and deb
 The following features and quality of life improvements have yet to be implemented and added to the library:
 - Basic layout Blocks (flexbox, grid, ...)
 - Block update / upgrade migrations
+- Block asset / dependency management
 
 ---
 
