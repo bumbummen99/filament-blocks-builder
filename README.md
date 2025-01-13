@@ -129,6 +129,13 @@ Use the *Debug Workbench* configuration in Visual Studio Code to preview and deb
 
 ---
 
+## 🛠Todo
+The following features and quality of life improvements have yet to be implemented and added to the library:
+- Basic layout Blocks (flexbox, grid, ...)
+- Block update / upgrade migrations
+
+---
+
 ## 🛡️License
 This project is licensed under the [GNU GPL v3](https://github.com/bumbummen99/filament-blocks-builder/blob/master/LICENSE) License.
 
