@@ -15,13 +15,13 @@
     ],
     "require": {
         "php": "^8.3",
-        "illuminate/support": "^11 || ^12",
+        "illuminate/support": "^11 | ^12",
         "filament/forms": "^3.2.120"
     },
     "require-dev": {
-        "orchestra/testbench": "^9.5",
         "filament/filament": "^3.2.120",
-        "orchestra/testbench-dusk": "^9.8"
+        "orchestra/testbench": "^9.5 | ^10.0",
+        "orchestra/testbench-dusk": "^9.8 | ^10.0"
     },
     "extra": {
         "laravel": {
