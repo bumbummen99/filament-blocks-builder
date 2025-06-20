@@ -36,6 +36,7 @@ BlocksInput::make('content')
         Blocks\Typography\Paragraph::block($form)
     ])
 ```
+> **Note:** The `BlocksInput` Form component will output it's data as an array. You must ensure that the Model does cast the attribute as described in [the Laravel documentation](https://laravel.com/docs/12.x/eloquent-mutators#array-and-json-casting).
 
 ### Creating Blocks
 A Block itself is a combination of a Filament PHP Form definition, the view for the frontend combined with all Logic required to proccess the Block:
