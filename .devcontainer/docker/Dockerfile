@@ -1,5 +1,5 @@
 # Define the DevContainer template to be used as the base
-FROM mcr.microsoft.com/devcontainers/php:1-8.3-bullseye
+FROM mcr.microsoft.com/devcontainers/php:1-8.4-bullseye
 
 # Update the registry once
 RUN apt-get update
