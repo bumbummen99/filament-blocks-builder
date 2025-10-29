@@ -3,16 +3,11 @@
 namespace Workbench\App\Filament\Resources;
 
 use Workbench\App\Filament\Resources\PageResource\Pages;
-use Closure;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Str;
-use SkyRaptor\FilamentBlocksBuilder\Facades;
 use SkyRaptor\FilamentBlocksBuilder\Blocks;
 use SkyRaptor\FilamentBlocksBuilder\Forms\Components\BlocksInput;
 use Workbench\App\Models\Page;
@@ -35,7 +30,7 @@ class PageResource extends Resource
                     ->schema([
                         BlocksInput::make('content')
                             ->label('')
-                            ->blocks(fn () => [
+                            ->blocks(fn() => [
                                 Blocks\Card::block($form),
                                 Blocks\Typography\Heading::block($form),
                                 Blocks\Typography\Paragraph::block($form)

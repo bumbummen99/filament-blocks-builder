@@ -2,7 +2,6 @@
 
 namespace SkyRaptor\FilamentBlocksBuilder\Forms\Components;
 
-use Closure;
 use Filament\Forms\Components\Builder;
 
 final class BlocksInput extends Builder
@@ -27,10 +26,10 @@ final class BlocksInput extends Builder
      */
     protected function inheritBlocks()
     {
-        /* Inherit possible parent Blocks */
+        // Inherit possible parent Blocks
         $this->childComponents(
-            /* Use a Closure to prevent accessing the Component's Container before initialization */
-            fn () => $this->getParentBlocksInput()?->getChildComponents()
+            // Use a Closure to prevent accessing the Component's Container before initialization
+            fn() => $this->getParentBlocksInput()?->getChildComponents()
         );
     }
 
@@ -52,13 +51,13 @@ final class BlocksInput extends Builder
     {
         $current = $this;
 
-        /* Iterate this BlockInput's parents */
+        // Iterate this BlockInput's parents
         while ($parent = $current->getContainer()->getParentComponent()) {
-            /* Determine if the parent is a BlocksInput */
+            // Determine if the parent is a BlocksInput
             if ($parent instanceof static) {
                 return $parent;
             } else {
-                /* Continue search with the parent */
+                // Continue search with the parent
                 $current = $parent;
             }
         }

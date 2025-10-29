@@ -13,7 +13,7 @@ class WorkbenchServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        /* Correct the User Model configuration for Orchestral Testbench */
+        // Correct the User Model configuration for Orchestral Testbench
         Config::set('auth.providers.users.model', User::class);
     }
 
