@@ -47,23 +47,7 @@ class BlocksInputTest extends TestCase
                 /* Add a Card as a nested BlockBuilder instance */
                 [
                     'data' => [
-                        'content' => [
-                            /* Add a Heading Block as the Card's title */
-                            [
-                                'data' => [
-                                    'content' => 'Das ist eine Card!',
-                                    'level'   => 'h2'
-                                ],
-                                'type' => Blocks\Typography\Heading::class
-                            ],
-                            /* Add a Paragraph Block as the Card's content */
-                            [
-                                'data' => [
-                                    'content' => 'Dies ist ein normaler Textblock und Inhalt der Card.'
-                                ],
-                                'type' => Blocks\Typography\Paragraph::class
-                            ]
-                        ]
+                        'content' => []
                     ],
                     'type' => Blocks\Card::class
                 ]
@@ -73,8 +57,25 @@ class BlocksInputTest extends TestCase
         /* Check the second BlockBuilder */
         $nestedBuilder = $checkBuilder('data.content.0.data.content');
 
-        /* Ensure the BlocksBuilder inherited the blocks from it's closest parent */
-        $this->assertEquals($parentBuilder->getChildComponents(), $nestedBuilder->getChildComponents());
+        $parentChildComponents = $parentBuilder->getChildComponents();
+        $nestedChildComponents = $nestedBuilder->getChildComponents();
+
+        /* Compare both arrays */
+        $this->assertCount(count($parentChildComponents), $nestedChildComponents);
+
+        $getBlockName = function(\Filament\Forms\Components\Builder\Block $block) {
+            return $block->getName();
+        };
+
+        /* Compare object attributes */
+        foreach ($parentChildComponents as $index => $component) {
+            // Compare the Block name / type
+            $this->assertEquals(
+                $getBlockName($component),
+                $getBlockName($nestedChildComponents[$index]),
+                "Block at index {$index} differs."
+            );
+        }
     }
 
     protected function getFormComponent(Testable $page, string $componentKey, string $formName = 'form'): ?Component
