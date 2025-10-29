@@ -16,10 +16,10 @@
     "require": {
         "php": "^8.3",
         "illuminate/support": "^11 | ^12",
-        "filament/forms": "^3.2.120"
+        "filament/forms": "^4"
     },
     "require-dev": {
-        "filament/filament": "^3.2.120",
+        "filament/filament": "^4",
         "orchestra/testbench": "^9.5 | ^10.0",
         "orchestra/testbench-dusk": "^9.8 | ^10.0"
     },

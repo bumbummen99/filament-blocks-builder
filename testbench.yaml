@@ -1,13 +1,15 @@
 providers:
   - Workbench\App\Providers\WorkbenchServiceProvider
-  - Livewire\LivewireServiceProvider
   - Filament\FilamentServiceProvider
+  - Filament\Schemas\SchemasServiceProvider
   - Filament\Forms\FormsServiceProvider
+  - Filament\Tables\TablesServiceProvider
   - Filament\Widgets\WidgetsServiceProvider
   - Filament\Support\SupportServiceProvider
   - Filament\Notifications\NotificationsServiceProvider
   - Filament\Infolists\InfolistsServiceProvider
   - Filament\Actions\ActionsServiceProvider
+  - Livewire\LivewireServiceProvider
   - BladeUI\Icons\BladeIconsServiceProvider
   - BladeUI\Heroicons\BladeHeroiconsServiceProvider
   - SkyRaptor\FilamentBlocksBuilder\FilamentBlocksBuilderServiceProvider

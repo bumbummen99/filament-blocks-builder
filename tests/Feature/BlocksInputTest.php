@@ -2,12 +2,15 @@
 
 namespace Tests\SkyRaptor\FilamentBlocksBuilder\Feature;
 
-use Filament\Forms\Components\Component;
+use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\EditRecord;
+use Filament\Schemas\Components\Component;
+use Filament\Schemas\Schema;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
 use SkyRaptor\FilamentBlocksBuilder\Blocks;
 use SkyRaptor\FilamentBlocksBuilder\Forms\Components\BlocksInput;
-use Workbench\App\Filament\Resources\PageResource\Pages;
+use Workbench\App\Filament\Resources\Pages\Pages;
 
 class BlocksInputTest extends TestCase
 {
@@ -23,19 +26,19 @@ class BlocksInputTest extends TestCase
         // Helper to check that a Component exists and is a BlockBuilder
         $checkBuilder = function (string $componentKey) use ($page) {
             // Check the first BlockBuilder instance exists
-            $page->assertFormComponentExists($componentKey);
+            $page->assertSchemaComponentExists($componentKey);
 
-            // Get a reference to the first BlockBuilder
-            $builder = $this->getFormComponent($page, $componentKey);
+            // Get a reference to the BlockBuilder instance
+            $component = $this->getFormComponent($page->instance(), $componentKey);
 
-            // Check the first BlockBuilder's type
-            $this->assertInstanceOf(BlocksInput::class, $builder);
+            // Verify the instance's type
+            $this->assertInstanceOf(BlocksInput::class, $component);
 
-            return $builder;
+            return $component;
         };
 
         /* Check the first BlockBuilder */
-        $parentBuilder = $checkBuilder('data.content');
+        $parentBuilder = $checkBuilder('content');
 
         // Fill the page's form, add a Card and some content Blocks.
         $page->fillForm([
@@ -52,7 +55,7 @@ class BlocksInputTest extends TestCase
         ]);
 
         // Check the second BlockBuilder
-        $nestedBuilder = $checkBuilder('data.content.0.data.content');
+        $nestedBuilder = $checkBuilder('content.0.data.content');
 
         $parentChildComponents = $parentBuilder->getChildComponents();
         $nestedChildComponents = $nestedBuilder->getChildComponents();
@@ -75,10 +78,15 @@ class BlocksInputTest extends TestCase
         }
     }
 
-    protected function getFormComponent(Testable $page, string $componentKey, string $formName = 'form'): ?Component
+    /**
+     * Helper to try to get a Component from an CreateRecord's or EditRecord's form.
+     * 
+     * @param CreateRecord|EditRecord $page 
+     * @param string $componentKey 
+     * @return null|Component 
+     */
+    protected function getFormComponent(CreateRecord|EditRecord $page, string $componentKey): ?Component
     {
-        /** @var ComponentContainer $form */
-        $form = $page->instance()->{$formName};
-        return $form->getFlatComponentsByKey(withHidden: true)[$componentKey] ?? null;
+        return $page->form->getFlatComponents(withHidden: true)[$componentKey] ?? null;
     }
 }

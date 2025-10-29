@@ -4,7 +4,7 @@ namespace SkyRaptor\FilamentBlocksBuilder\Blocks\Typography;
 
 use Filament\Forms\Components;
 use Filament\Forms\Components\Builder;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\HTMLBlock;
 
 /**
@@ -15,9 +15,9 @@ class Heading extends HTMLBlock
     /**
      * @inheritDoc
      */
-    public static function block(Form $form): Builder\Block
+    public static function block(Schema $schema): Builder\Block
     {
-        return parent::block($form)->schema([
+        return parent::block($schema)->schema([
             Components\TextInput::make('content')
                 ->required(),
             Components\Select::make('level')
