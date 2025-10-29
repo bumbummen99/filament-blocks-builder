@@ -46,7 +46,7 @@ trait RequiresApplicationEnvironment
      */
     protected function setUpRequiresApplicationEnvironment(): void
     {
-        /* Setup the default testing User */
+        // Setup the default testing User
         $this->user = $this->createUser();
         $this->actingAs($this->user);
     }

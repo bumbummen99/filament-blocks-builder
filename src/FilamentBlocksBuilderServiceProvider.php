@@ -21,10 +21,10 @@ class FilamentBlocksBuilderServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        /* Load the views provided by this package */
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'filament-blocks-builder');
+        // Load the views provided by this package
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-blocks-builder');
 
-        /* Register a Blade Directive to render Blocks. */
+        // Register a Blade Directive to render Blocks.
         Blade::directive('blocks', function (string $expression) {
             return Str::replaceArray('?', [
                 BlocksRenderer::class,

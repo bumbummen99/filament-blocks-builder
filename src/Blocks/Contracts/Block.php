@@ -15,7 +15,7 @@ abstract class Block
     public static function block(Form $form): Builder\Block
     {
         return Builder\Block::make(static::class)
-            /* Derive a basic label from the class name */
+            // Derive a basic label from the class name
             ->label(Str::of(static::class)->classBasename()->toString());
     }
 

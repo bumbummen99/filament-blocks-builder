@@ -29,7 +29,7 @@ class BlocksRenderer
                     throw new Exception('Invalid Block Type');
                 }
             })
-            ->filter(fn ($i) => ! is_null($i))
+            ->filter(fn($i) => ! is_null($i))
             ->join('');
 
         return $output;

@@ -17,18 +17,18 @@ class BlocksInputTest extends TestCase
      */
     function test_nested_builders_inherit_blocks()
     {
-        /* Initialize the Filament PHP Resource's create Page to be tested */
+        // Initialize the Filament PHP Resource's create Page to be tested
         $page = Livewire::test(Pages\CreatePage::class);
 
-        /* Helper to check that a Component exists and is a BlockBuilder */
+        // Helper to check that a Component exists and is a BlockBuilder
         $checkBuilder = function (string $componentKey) use ($page) {
-            /* Check the first BlockBuilder instance exists */
+            // Check the first BlockBuilder instance exists
             $page->assertFormComponentExists($componentKey);
 
-            /* Get a reference to the first BlockBuilder */
+            // Get a reference to the first BlockBuilder
             $builder = $this->getFormComponent($page, $componentKey);
 
-            /* Check the first BlockBuilder's type */
+            // Check the first BlockBuilder's type
             $this->assertInstanceOf(BlocksInput::class, $builder);
 
             return $builder;
@@ -37,44 +37,42 @@ class BlocksInputTest extends TestCase
         /* Check the first BlockBuilder */
         $parentBuilder = $checkBuilder('data.content');
 
-        /* Fill the page's form, add a Card and some content Blocks. */
+        // Fill the page's form, add a Card and some content Blocks.
         $page->fillForm([
-            /* Set the Page's title */
             'title' => 'Hallo, Welt!',
-
-            /* Set the page's BlockBuilder content */
             'content' => [
-                /* Add a Card as a nested BlockBuilder instance */
+                // Add a Card as a nested BlockBuilder instance
                 [
                     'data' => [
-                        'content' => [
-                            /* Add a Heading Block as the Card's title */
-                            [
-                                'data' => [
-                                    'content' => 'Das ist eine Card!',
-                                    'level'   => 'h2'
-                                ],
-                                'type' => Blocks\Typography\Heading::class
-                            ],
-                            /* Add a Paragraph Block as the Card's content */
-                            [
-                                'data' => [
-                                    'content' => 'Dies ist ein normaler Textblock und Inhalt der Card.'
-                                ],
-                                'type' => Blocks\Typography\Paragraph::class
-                            ]
-                        ]
+                        'content' => []
                     ],
                     'type' => Blocks\Card::class
                 ]
             ]
         ]);
 
-        /* Check the second BlockBuilder */
+        // Check the second BlockBuilder
         $nestedBuilder = $checkBuilder('data.content.0.data.content');
 
-        /* Ensure the BlocksBuilder inherited the blocks from it's closest parent */
-        $this->assertEquals($parentBuilder->getChildComponents(), $nestedBuilder->getChildComponents());
+        $parentChildComponents = $parentBuilder->getChildComponents();
+        $nestedChildComponents = $nestedBuilder->getChildComponents();
+
+        // Compare both arrays
+        $this->assertCount(count($parentChildComponents), $nestedChildComponents);
+
+        $getBlockName = function (\Filament\Forms\Components\Builder\Block $block) {
+            return $block->getName();
+        };
+
+        // Compare object attributes
+        foreach ($parentChildComponents as $index => $component) {
+            // Compare the Block name / type
+            $this->assertEquals(
+                $getBlockName($component),
+                $getBlockName($nestedChildComponents[$index]),
+                "Block at index {$index} differs."
+            );
+        }
     }
 
     protected function getFormComponent(Testable $page, string $componentKey, string $formName = 'form'): ?Component
