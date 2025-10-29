@@ -2,11 +2,11 @@
 
 namespace SkyRaptor\FilamentBlocksBuilder;
 
-use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\View;
-use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\Block;
+use Illuminate\Support\Facades\Blade;
+use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\HTMLBlock;
+use SkyRaptor\FilamentBlocksBuilder\Exceptions\InvalidBlockTypeException;
 
 /**
  * This class is responsible for rendering the 
@@ -20,13 +20,12 @@ class BlocksRenderer
             ->map(function (array $block) {
                 $fqcn = Arr::get($block, 'type');
 
-                if (is_subclass_of($fqcn, Block::class)) {
-                    return View::make(
-                        $fqcn::view(),
+                if (is_subclass_of($fqcn, HTMLBlock::class)) {
+                    return $fqcn::render(
                         Arr::get($block, 'data', [])
-                    )->render();
+                    );
                 } else {
-                    throw new Exception('Invalid Block Type');
+                    throw new InvalidBlockTypeException("Invalid Block type {$fqcn}");
                 }
             })
             ->filter(fn($i) => ! is_null($i))

@@ -5,12 +5,12 @@ namespace SkyRaptor\FilamentBlocksBuilder\Blocks\Typography;
 use Filament\Forms\Components;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
-use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\Block;
+use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\HTMLBlock;
 
 /**
  * This typography Block defines a heading.
  */
-class Heading extends Block
+class Heading extends HTMLBlock
 {
     /**
      * @inheritDoc
@@ -33,7 +33,7 @@ class Heading extends Block
         ])->columns(2);
     }
 
-    public static function view(): string
+    public static function view(): ?string
     {
         return 'filament-blocks-builder::typography.heading';
     }

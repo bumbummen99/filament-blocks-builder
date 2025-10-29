@@ -5,12 +5,12 @@ namespace SkyRaptor\FilamentBlocksBuilder\Blocks\Typography;
 use Filament\Forms\Components;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
-use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\Block;
+use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\HTMLBlock;
 
 /**
  * This typography Block defines a paragraph.
  */
-class Paragraph extends Block
+class Paragraph extends HTMLBlock
 {
     /**
      * @inheritDoc
@@ -23,7 +23,7 @@ class Paragraph extends Block
         ]);
     }
 
-    public static function view(): string
+    public static function view(): ?string
     {
         return 'filament-blocks-builder::typography.paragraph';
     }

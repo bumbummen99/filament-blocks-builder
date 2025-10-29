@@ -26,10 +26,10 @@ class FilamentBlocksBuilderServiceProvider extends ServiceProvider
 
         // Register a Blade Directive to render Blocks.
         Blade::directive('blocks', function (string $expression) {
-            return Str::replaceArray('?', [
+            return Str::replaceArray('$', [
                 BlocksRenderer::class,
                 $expression
-            ], '<?php echo ?:render(?); ?>');
+            ], "<?php echo $::render($); ?>");
         });
     }
 }
