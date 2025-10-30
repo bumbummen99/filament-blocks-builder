@@ -21,7 +21,7 @@ class TailwindManagerTest extends TestCase
 
         // Ensure the paths are registered as expected
         $this->assertEquals(
-            $paths->map(fn($path) => "vendor/{$path}")->toArray(),
+            $paths->map(fn($path) => 'vendor' . DIRECTORY_SEPARATOR . $path)->toArray(),
             FilamentBlocksBuilderTailwindManager::paths()
         );
     }
@@ -45,7 +45,7 @@ class TailwindManagerTest extends TestCase
         // Register the previously defined paths
         $paths->each(fn($path) => FilamentBlocksBuilderTailwindManager::register($path));
 
-        $expected = $paths->map(fn($path) => "vendor/{$path}")->toJson();
+        $expected = $paths->map(fn($path) => 'vendor' . DIRECTORY_SEPARATOR . $path)->toJson();
 
         $this->artisan('filament-blocks-builder:tailwindpaths')
             ->expectsOutput($expected)
@@ -70,7 +70,7 @@ class TailwindManagerTest extends TestCase
         ]);
 
         // Create (empty) files
-        $paths->each(fn($path) => file_put_contents(base_path("vendor/{$path}"), ''));
+        $paths->each(fn($path) => file_put_contents(base_path('vendor' . DIRECTORY_SEPARATOR . $path), ''));
 
         return $paths;
     }
