@@ -31,9 +31,9 @@ use SkyRaptor\FilamentBlocksBuilder\Forms\Components\BlocksInput;
 
 BlocksInput::make('content')
     ->blocks(fn () => [
-        Blocks\Layout\Card::block($form),
-        Blocks\Typography\Heading::block($form),
-        Blocks\Typography\Paragraph::block($form)
+        Blocks\Layout\Card::block($schema),
+        Blocks\Typography\Heading::block($schema),
+        Blocks\Typography\Paragraph::block($schema)
     ])
 ```
 > **Note:** The `BlocksInput` Form component will output it's data as an array. You must ensure that the Model does cast the attribute as described in [the Laravel documentation](https://laravel.com/docs/12.x/eloquent-mutators#array-and-json-casting).
@@ -54,19 +54,19 @@ Create a new class for your Block, extend the [`Block`](https://github.com/bumbu
 namespace App\Filament\Blocks;
 
 use Filament\Forms\Components;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 
-class Example extends \SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\Block
+class Example extends \SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\HTMLBlock
 {
-    public static function block(Form $form): Components\Builder\Block
+    public static function block(Schema $schema): Components\Builder\Block
     {
-        return parent::block($form)->schema([
+        return parent::block($schema)->schema([
             Components\Textarea::make('description')
                 ->required(),
         ]);
     }
 
-    public static function view(): string
+    public static function view(): ?string
     {
         return 'example';
     }
@@ -88,11 +88,11 @@ Create a [Blade view](https://laravel.com/docs/11.x/views) (e.g., `resources/vie
 Add your custom block to the [`BlocksInput`](https://github.com/bumbummen99/filament-blocks-builder/blob/master/src/Forms/Components/BlocksInput.php):
 ```php
 ->blocks(fn () => [
-    Blocks\Layout\Card::block($form),
-    Blocks\Typography\Heading::block($form),
-    Blocks\Typography\Paragraph::block($form),
-    // ...
+    Blocks\Layout\Card::block($schema),
+    Blocks\Typography\Heading::block($schema),
+    Blocks\Typography\Paragraph::block($schema),
     App\Filament\Blocks\Example::block($form)
+    // Add more Blocks!
 ])
 ```
 
