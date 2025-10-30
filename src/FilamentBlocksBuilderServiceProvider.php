@@ -5,6 +5,7 @@ namespace SkyRaptor\FilamentBlocksBuilder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use SkyRaptor\FilamentBlocksBuilder\Console\Commands\TailwindPaths;
 
 class FilamentBlocksBuilderServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,8 @@ class FilamentBlocksBuilderServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
+        $this->app->singleton(FilamentBlocksBuilderTailwindManager::class);
     }
 
     /**
@@ -21,6 +23,13 @@ class FilamentBlocksBuilderServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Register the command if we are using the application via the CLI
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                TailwindPaths::class,
+            ]);
+        }
+
         // Load the views provided by this package
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-blocks-builder');
 
