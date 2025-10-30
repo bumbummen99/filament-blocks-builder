@@ -4,7 +4,6 @@ namespace SkyRaptor\FilamentBlocksBuilder;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Blade;
 use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\HTMLBlock;
 use SkyRaptor\FilamentBlocksBuilder\Exceptions\InvalidBlockTypeException;
 
