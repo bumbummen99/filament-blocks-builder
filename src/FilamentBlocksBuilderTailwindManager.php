@@ -4,6 +4,7 @@ namespace SkyRaptor\FilamentBlocksBuilder;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use SkyRaptor\FilamentBlocksBuilder\Exceptions\InvalidTailwindPathException;
 
 /**
@@ -30,16 +31,20 @@ class FilamentBlocksBuilderTailwindManager
      */
     public function register(string $path): void
     {
+        $prepended = Str::of($path)
+            ->prepend('vendor' . DIRECTORY_SEPARATOR)
+            ->toString();
+
         // Build the absolute path
-        $absolute = base_path("vendor/{$path}");
+        $absolute = base_path($prepended);
 
         if (! file_exists($absolute)) {
             throw new InvalidTailwindPathException("Provided invalid Tailwind CSS build path {$path}");
         }
 
         // Prevent duplicates
-        if (! $this->paths->contains("vendor/{$path}")) {
-            $this->paths->add("vendor/{$path}");
+        if (! $this->paths->contains($prepended)) {
+            $this->paths->add($prepended);
         }
     }
 
