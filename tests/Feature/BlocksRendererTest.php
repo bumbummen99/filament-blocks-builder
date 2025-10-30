@@ -4,6 +4,8 @@ namespace Tests\SkyRaptor\FilamentBlocksBuilder\Feature;
 
 use Illuminate\Support\Facades\Blade;
 use SkyRaptor\FilamentBlocksBuilder\Blocks;
+use SkyRaptor\FilamentBlocksBuilder\BlocksRenderer;
+use SkyRaptor\FilamentBlocksBuilder\Exceptions\InvalidBlockTypeException;
 
 class BlocksRendererTest extends TestCase
 {
@@ -49,5 +51,25 @@ class BlocksRendererTest extends TestCase
         <h2 class="font-bold leading-tight font-2xl">Das ist eine Card!</h2><p>Das ist ein Paragraph!</p>    <div>
 </div>';
         $this->assertEquals($expected, $output);
+    }
+
+    /**
+     * This test is intended to verify that the BlocksRenderer 
+     * does verify that it does only render HTMLBlocks
+     */
+    function test_blocks_renderer_verify_block_type()
+    {
+        // Define Block data with an invalid type
+        $data = [
+            [
+                'data' => [],
+                'type' => 'This\\Is\\Nonsense'
+            ]
+        ];
+
+        $this->expectException(InvalidBlockTypeException::class);
+
+        // Render the Block data
+        BlocksRenderer::render($data);
     }
 }
