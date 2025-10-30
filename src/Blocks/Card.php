@@ -3,7 +3,7 @@
 namespace SkyRaptor\FilamentBlocksBuilder\Blocks;
 
 use Filament\Forms\Components\Builder;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use SkyRaptor\FilamentBlocksBuilder\Blocks\Contracts\HTMLBlock;
 use SkyRaptor\FilamentBlocksBuilder\Forms;
 
@@ -15,9 +15,9 @@ class Card extends HTMLBlock
     /**
      * @inheritDoc
      */
-    public static function block(Form $form): Builder\Block
+    public static function block(Schema $schema): Builder\Block
     {
-        return parent::block($form)->schema([
+        return parent::block($schema)->schema([
             Forms\Components\BlocksInput::make('content')
         ]);
     }

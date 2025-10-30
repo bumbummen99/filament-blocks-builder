@@ -1,9 +1,9 @@
 <?php
 
-namespace Workbench\App\Filament\Resources\PageResource\Pages;
+namespace Workbench\App\Filament\Resources\Pages\Pages;
 
-use Workbench\App\Filament\Resources\PageResource;
-use Filament\Actions;
+use Workbench\App\Filament\Resources\Pages\PageResource;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
@@ -13,7 +13,7 @@ class EditPage extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }
