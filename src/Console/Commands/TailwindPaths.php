@@ -3,8 +3,16 @@
 namespace SkyRaptor\FilamentBlocksBuilder\Console\Commands;
 
 use Illuminate\Console\Command;
-use SkyRaptor\FilamentBlocksBuilder\FilamentBlocksBuilderTailwindCSSManager;
+use Illuminate\Support\Collection;
+use SkyRaptor\FilamentBlocksBuilder\FilamentBlocksBuilderTailwindManager;
 
+/**
+ * This Artisan command returns the collected paths relevant 
+ * for any Tailwind CSS build process. Make sure to include 
+ * this in your Tailwind configuration's 'content' section.
+ * 
+ * @package SkyRaptor\FilamentBlocksBuilder\Console\Commands
+ */
 class TailwindPaths extends Command
 {
     /**
@@ -24,8 +32,8 @@ class TailwindPaths extends Command
     /**
      * Execute the console command.
      */
-    public function handle(FilamentBlocksBuilderTailwindCSSManager $manager): void
+    public function handle(FilamentBlocksBuilderTailwindManager $manager): void
     {
-        $this->info($manager->paths());
+        $this->info(Collection::make($manager->paths())->toJson());
     }
 }
