@@ -2,10 +2,12 @@
 
 namespace Tests\SkyRaptor\FilamentBlocksBuilder\Feature;
 
+use Composer\Semver\Semver;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\App;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
 use SkyRaptor\FilamentBlocksBuilder\Blocks;
@@ -37,7 +39,7 @@ class BlocksInputTest extends TestCase
             return $component;
         };
 
-        /* Check the first BlockBuilder */
+        // Check the first BlockBuilder
         $parentBuilder = $checkBuilder('content');
 
         // Fill the page's form, add a Card and some content Blocks.
